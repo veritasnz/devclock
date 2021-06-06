@@ -1,6 +1,0 @@
-{
-    "short_name": "DevClock",
-    "name": "DevClock – Pomodoro-style stopwatch",
-    "start_url": ".",
-    "display": "standalone"
-}
