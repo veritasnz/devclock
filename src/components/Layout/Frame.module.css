@@ -1,0 +1,41 @@
+.frame {
+    position: relative;
+    width: 100%;
+    padding: 5rem;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 360px) {
+    .frame:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        pointer-events: none;
+    
+        background:
+            linear-gradient(270deg, rgba(var(--c-background-rgb), 0) 0%, var(--c-background) 100%)
+                no-repeat left center / 5rem 100%,
+            linear-gradient(90deg, rgba(var(--c-background-rgb), 0) 0%, var(--c-background) 100%)
+                no-repeat right center / 5rem 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .frame {
+        padding: 6rem 9rem 10rem;
+    }
+
+    .frame:after {
+        background-size: 9rem 100%, 9rem 100%;
+    }
+}

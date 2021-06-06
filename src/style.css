@@ -1,0 +1,124 @@
+/* Settings
+############################################### */
+:root {
+    /* Colors */
+    --c-theme-color: #41a9fe;
+    --c-theme-background: #e4f1fb;
+    --c-theme-focus: #33ddf0;
+
+    --c-error-red: #ff4a4a;
+    --c-confirm-green: #1db954;
+
+    /* Font Sizes */
+    --fs-body: 1.6rem;
+
+    --fs-header-sp: 3rem;
+    --fs-header-pc: 3.8rem;
+
+    /* Measurements */
+    --max-width: 1200px;
+    --vh: 1vh; /* overwritten */
+}
+
+/* Elements
+############################################### */
+html,
+body {
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-family: "Helvetica Neue", "Helvetica", -apple-system, BlinkMacSystemFont,
+        "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+    line-height: 1.6;
+
+    color: var(--c-text);
+    background: var(--c-background);
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    transition: all 150ms ease;
+    color: var(--c-theme-focus);
+}
+
+a {
+    font-weight: bold;
+    color: var(--c-theme-color);
+}
+
+a .fa,
+a .fas {
+    font-size: 0.7em;
+}
+
+a .fa-external-link-alt {
+    margin-left: 0.4em;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: var(--c-theme-color);
+    background: var(--c-theme-background);
+    text-decoration: underline;
+}
+
+::selection {
+    color: var(--c-theme-background);
+    background: var(--c-theme-color);
+}
+
+p {
+    line-height: 1.8;
+}
+
+input[type="button"] {
+    cursor: pointer;
+}
+
+em {
+    font-style: normal;
+}
+
+img,
+svg,
+iframe {
+    display: block;
+    max-width: 100%;
+}
+
+img,
+svg {
+    height: auto;
+}
+
+/* Objects
+############################################### */
+/* Accessibility
+----------------------------------------------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+#root {
+    height: calc(var(--vh, 1vh) * 100);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}

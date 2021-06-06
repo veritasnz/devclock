@@ -1,0 +1,40 @@
+.button {
+    padding: 0.4em 1.5em;
+    font-weight: 200;
+    color: var(--c-text);
+    background: var(--c-background);
+    border: 2px solid var(--c-theme-color);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+
+.button :global .fa,
+.button :global .fas {
+    font-size: 0.8em;
+    margin-left: 0.4em;
+}
+
+.button:hover {
+    color: var(--c-background);
+    background: var(--c-theme-color);
+}
+
+.button:focus {
+    outline: none;
+    border-color: var(--c-theme-focus);
+}
+
+.button:global.updated-mode {
+    cursor: auto;
+    color: var(--c-confirm-green);
+    border-color:var(--c-confirm-green);
+    background: var(--c-background);
+}
+
+.button:disabled {
+    pointer-events: none;
+    opacity: 0.4;
+    color: var(--c-text);
+    background: var(--c-background);
+}

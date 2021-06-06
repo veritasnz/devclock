@@ -1,0 +1,47 @@
+.wrap {
+    position: fixed;
+    z-index: 15;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    padding: 1em;
+    color: var(--c-text);
+    background: var(--c-background);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.warning {
+    font-size: 1.8em;
+    margin-right: 0.4em;
+    color: var(--c-error-red);
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.buttonbox {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-top: 0.4em;
+}
+
+.button {
+    display: block;
+    width: calc(50% - 0.5em);
+}
+
+.button:first-of-type {
+    color: var(--c-error-red);
+    border-color: var(--c-error-red);
+}
+
+.button:last-of-type {
+    color: var(--c-text);
+    border-color: var(--c-text);
+}

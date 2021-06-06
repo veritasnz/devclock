@@ -1,0 +1,99 @@
+.wrap {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 0.9em;
+}
+
+.input {
+    text-align: center;
+}
+
+.input + .input {
+    margin-left: 0.4em;
+}
+
+.input > label {
+    display: block;
+    font-size: 0.5em;
+    font-weight: 600;
+}
+
+.input > input,
+.input > select {
+    display: block;
+    padding: 0 0.4em;
+    height: 1.6em;
+    font-size: 1em;
+    font-weight: 300;
+    color: var(--c-text);
+    border: 2px solid var(--c-theme-color);
+    background: var(--c-background);
+}
+
+.input > input:focus,
+.input > select:focus {
+    outline: none;
+    border-color: var(--c-theme-focus);
+}
+
+.input > select > option {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.input > input {
+    width: 3em;
+    text-align: center;
+}
+
+.input > input::placeholder {
+    color: var(--c-text);
+    text-align: center;
+}
+
+.wrap > button {
+    display: inline-block;
+    margin-left: 0.4em;
+    margin-bottom: 0.2em;
+    color: var(--c-theme-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+.wrap > button:hover {
+    transform: scale(1.1);
+}
+
+.wrap > button:focus {
+    outline: none;
+    color: var(--c-theme-focus);
+}
+
+@media (min-width: 1200px) {
+    .wrap {
+        font-size: 1.15em;
+    }
+}
+
+/**
+* Error
+*/
+.error.input > input {
+    border: 2px solid var(--c-error-red);
+}
+
+.error.input:focus {
+    border-color: var(--c-error-red);
+}
+
+.error-message {
+    /* p */
+    margin-top: 0.6em;
+    padding-right: 4.4em;
+    text-align: center;
+    font-size: 0.6em;
+    color: var(--c-error-red);
+}
