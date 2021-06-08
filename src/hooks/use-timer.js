@@ -135,7 +135,7 @@ const useTimer = () => {
         if (isTicking) {
             interval = setInterval(() => {
                 dispatchTimer({ type: "TICK" });
-            }, 1000);
+            }, 250);
         }
 
         if (requiresReset) {
