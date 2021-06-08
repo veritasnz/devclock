@@ -10,6 +10,7 @@ const DEFAULT_TIMER_STATE = {
     isTicking: false,
     requiresReset: false,
     startTime: false,
+    messageQueue: "",
 };
 
 /**
@@ -23,6 +24,7 @@ const timerReducer = (state, action) => {
             isTicking: false,
             requiresReset: false,
             endTime: false,
+            messageQueue: "",
         };
     }
 
@@ -33,6 +35,7 @@ const timerReducer = (state, action) => {
             isTicking: false,
             requiresReset: state.requiresReset,
             endTime: false,
+            messageQueue: "",
         };
     }
 
@@ -46,37 +49,45 @@ const timerReducer = (state, action) => {
             isTicking: true,
             requiresReset: state.requiresReset,
             endTime: endTime,
+            messageQueue: "",
         };
     }
 
     if (action.type === "TICK") {
-        const newCycle = state.cycle.map((block) => ({ ...block }));
-        let newIndex = state.index;
-        let newIsTicking = state.isTicking;
-        let newEndTime = state.endTime;
-        let newRequiresReset = false;
+        const cycle = state.cycle.map((block) => ({ ...block }));
+
+        let index = state.index;
+        let isTicking = state.isTicking;
+        let endTime = state.endTime;
+        let requiresReset = false;
+        let messageQueue = state.messageQueue;
 
         if (state.isTicking && !state.requiresReset) {
             const NOW = Math.floor(new Date().getTime() / 1000);
 
             if (NOW <= state.endTime) {
-                newCycle[newIndex].seconds = state.endTime - NOW;
-                document.title = formatSeconds(newCycle[newIndex].seconds);
+                cycle[index].seconds = state.endTime - NOW;
+                document.title = formatSeconds(cycle[index].seconds);
             } else {
-                newIndex++;
-                newRequiresReset = !newCycle[newIndex];
-                if (!newRequiresReset) {
-                    newEndTime = NOW + newCycle[newIndex].seconds;
+                index++;
+                requiresReset = !cycle[index];
+
+                if (requiresReset) {
+                    messageQueue = "Cycle has finished. Start again";
+                } else {
+                    messageQueue = cycle[index].message;
+                    endTime = NOW + cycle[index].seconds;
                 }
             }
         }
 
         return {
-            cycle: newCycle,
-            index: newIndex,
-            isTicking: newIsTicking,
-            requiresReset: newRequiresReset,
-            endTime: newEndTime,
+            cycle,
+            index,
+            isTicking,
+            requiresReset,
+            endTime,
+            messageQueue,
         };
     }
 
@@ -86,19 +97,21 @@ const timerReducer = (state, action) => {
 /**
  * Hook Logic
  */
-const useTimer = () => {
+const useTimer = (playVoice) => {
     const dispatch = useDispatch();
     /**
      * State
      */
-    const settingsCycle = useSelector((store) => store.settings.cycle);
+    const { cycle: settingsCycle, soundOn } = useSelector(
+        (store) => store.settings
+    );
 
     const [timerState, dispatchTimer] = useReducer(
         timerReducer,
         DEFAULT_TIMER_STATE
     );
 
-    const { cycle, index, isTicking, requiresReset } = timerState;
+    const { cycle, index, isTicking, requiresReset, messageQueue } = timerState;
 
     /**
      * State Handlers
@@ -135,7 +148,11 @@ const useTimer = () => {
         if (isTicking) {
             interval = setInterval(() => {
                 dispatchTimer({ type: "TICK" });
-            }, 250);
+            }, 500);
+        }
+
+        if (messageQueue !== "" && soundOn) {
+            playVoice(messageQueue);
         }
 
         if (requiresReset) {
@@ -144,7 +161,14 @@ const useTimer = () => {
         }
 
         return () => clearInterval(interval);
-    }, [isTicking, requiresReset, resetTimer, dispatch]);
+    }, [
+        isTicking,
+        requiresReset,
+        messageQueue,
+        resetTimer,
+        playVoice,
+        dispatch,
+    ]);
 
     return {
         cycle,

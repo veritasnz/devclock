@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const useVoice = () => {
     const voiceName = useSelector((store) => store.settings.voiceName);
+
     const synth = useRef();
     const [voice, setVoice] = useState([]);
 
@@ -32,6 +33,8 @@ const useVoice = () => {
 
     const playVoice = useCallback(
         (message) => {
+            synth.current.cancel(); // Clear synth of utterances
+
             const utterance = new SpeechSynthesisUtterance(message);
             utterance.lang = voice.lang;
             utterance.pitch = 1;

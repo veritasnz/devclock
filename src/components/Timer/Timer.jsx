@@ -1,5 +1,4 @@
-import React, { useEffect, Fragment, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { Fragment, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 import useTimer from "../../hooks/use-timer";
@@ -10,65 +9,11 @@ import TimerDisplay from "./TimerDisplay";
 import TimerButtons from "./TimerButtons";
 import SoundEnableWidget from "../Layout/SoundEnableWidget";
 
-let blockIsFinished = false;
-
 const Timer = (props) => {
-    const soundOn = useSelector((store) => store.settings.soundOn);
+    const { playVoice } = useVoice();
 
     const { cycle, index, isTicking, startTimer, stopTimer, resetTimer } =
-        useTimer();
-
-    /**
-     * Block Finished, Synth Voice
-     */
-    const { playVoice, stopVoice } = useVoice();
-
-    const currentBlock = cycle[index];
-    const nextBlock = cycle[index + 1];
-
-    useEffect(() => {
-        let timer;
-
-        if (currentBlock && currentBlock.seconds === 0) {
-            blockIsFinished = true;
-            stopTimer();
-
-            if (soundOn) {
-                if (nextBlock) {
-                    console.log("playvoice");
-                    playVoice(nextBlock.message);
-                } else {
-                    console.log("playvoice");
-                    playVoice("Cycle has been reset. Start again");
-                }
-            }
-
-            timer = setTimeout(() => {
-                startTimer();
-                blockIsFinished = false;
-            }, 3000);
-        }
-
-        return () => clearTimeout(timer);
-    }, [
-        currentBlock,
-        nextBlock,
-        playVoice,
-        cycle,
-        index,
-        stopTimer,
-        startTimer,
-        soundOn,
-    ]);
-
-    /**
-     * Reset
-     */
-    const resetHandler = () => {
-        blockIsFinished = false;
-        stopVoice();
-        resetTimer();
-    };
+        useTimer(playVoice);
 
     /**
      * Mobile Sound Enabling
@@ -98,17 +43,12 @@ const Timer = (props) => {
     if (cycle.length > 0) {
         content = (
             <Fragment>
-                <TimerDisplay
-                    cycle={cycle}
-                    index={index}
-                    blockIsFinished={blockIsFinished}
-                />
+                <TimerDisplay cycle={cycle} index={index} />
                 <TimerButtons
                     isTicking={isTicking}
                     onStart={startTimer}
                     onStop={stopTimer}
-                    onReset={resetHandler}
-                    blockIsFinished={blockIsFinished}
+                    onReset={resetTimer}
                 />
                 {isMobile && !mobileSoundEnabled && (
                     <SoundEnableWidget onEnable={mobileEnableSoundHandler} />

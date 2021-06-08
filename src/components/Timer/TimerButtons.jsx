@@ -8,21 +8,14 @@ const TimerButtons = (props) => {
         onStart: startHandler,
         onStop: stopHandler,
         onReset: resetHandler,
-        blockIsFinished,
     } = props;
 
     return (
         <div className={s.wrap}>
-            <Button
-                disabled={props.isTicking || blockIsFinished}
-                onClick={startHandler}
-            >
+            <Button disabled={props.isTicking} onClick={startHandler}>
                 Start
             </Button>
-            <Button
-                disabled={!props.isTicking || blockIsFinished}
-                onClick={stopHandler}
-            >
+            <Button disabled={!props.isTicking} onClick={stopHandler}>
                 Stop
             </Button>
             <Button onClick={resetHandler}>Reset</Button>

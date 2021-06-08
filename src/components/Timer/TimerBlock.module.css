@@ -48,15 +48,15 @@ em.item .seconds {
     font-weight: 500;
 }
 
-.zero .seconds :global {
+/* .zero .seconds :global {
     color: var(--c-error-red);
     animation: blink 1s cubic-bezier(0.7, 0.005, 0.4, 1) infinite;
-}
+} */
 
-@keyframes :global(blink) {
+/* @keyframes :global(blink) {
     0%  { opacity: 1; }
     50% { opacity: 0; }
-}
+} */
 
 small.item .seconds:after {
     content: "";

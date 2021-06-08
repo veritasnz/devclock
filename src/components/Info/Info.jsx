@@ -180,9 +180,19 @@ const Info = () => {
                         </li>
                     </ul>
                 </li>
+                <li>
+                    Unit tests – with so many <i>setTimeout</i> and{" "}
+                    <i>setInterval</i> calls, I've encountered a few
+                    hard-to-track bugs along the way
+                </li>
             </ul>
             <h3>Features</h3>
             <ul>
+                <li>
+                    Store current cycle position periodically and then load on
+                    page load. This will stop accidental tab closing and
+                    refreshing from destroying your current cycle progress
+                </li>
                 <li>
                     Customisable block-type names and their corresponding voice
                     messages

@@ -7,7 +7,7 @@ import TimerBlock from "./TimerBlock";
 const TimerDisplay = (props) => {
     const round = useSelector((store) => store.settings.round);
 
-    const { cycle, index: activeIndex, blockIsFinished } = props;
+    const { cycle, index: activeIndex } = props;
 
     return (
         <Fragment>
@@ -30,7 +30,6 @@ const TimerDisplay = (props) => {
                             seconds={item.seconds}
                             isActive={isActive}
                             isFinished={isFinished}
-                            blockIsFinished={blockIsFinished}
                         />
                     );
                 })}
