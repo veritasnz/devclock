@@ -161,7 +161,7 @@ const useTimer = (playVoice) => {
         }
 
         return () => clearInterval(interval);
-    }, [
+    }, [ // eslint-disable-line
         isTicking,
         requiresReset,
         messageQueue,
