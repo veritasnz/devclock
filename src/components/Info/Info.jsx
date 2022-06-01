@@ -1,5 +1,5 @@
 import s from "./Info.module.css";
-import portrait from "./dp-170x170.jpg";
+import portrait from "./dp-170x170.png";
 
 const Info = () => {
     return (
@@ -63,8 +63,11 @@ const Info = () => {
             <p>
                 This is the first React App I have made, and at the time of
                 making it I was halfway through completing my React course on
-                Udemy, and wanted a task to re-enforce what I was learning.{" "}
-                <br />
+                Udemy, and wanted a task to re-enforce what I was learning.
+            </p>
+            <p>
+                It is <strong>NOT</strong> a course project. I came up with the
+                idea for this app, and its design and implementation, by myself.
             </p>
             <p>It is made with the following tools:</p>
             <ul>
@@ -110,28 +113,28 @@ const Info = () => {
                 </li>
             </ul>
 
-            <h2>The author – Sean Verity</h2>
+            <h2>The author – Sean Veritas</h2>
             <div className={s.intro}>
-                <img src={portrait} alt="Portrait of Sean Verity" />
+                <img src={portrait} alt="Portrait of Sean Veritas" />
                 <div>
                     <p>
-                        Web developer &amp; translator, living in Himeji, Japan.{" "}
+                        Frontend developer, likes making stuff. Full time
+                        dingus, drinker of tap water (among other skills)
                         <br />
-                        In charge of development at my agency,{" "}
+                        Check out my{" "}
                         <a
-                            href="https://kuragedigital.com/"
+                            href="https://seanv.dev/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Kurage Digital JP
+                            blog
                             <i
                                 className="fas fa-external-link-alt"
                                 aria-hidden="true"
                             ></i>
-                        </a>
+                        </a>{" "}
+                        for more info about what I'm up to.
                         <br />
-                        Full time dingus, drinker of tap water (among other
-                        skills)
                     </p>
                 </div>
             </div>
@@ -145,7 +148,7 @@ const Info = () => {
                     <i className="fab fa-github" aria-hidden="true"></i>
                 </a>
                 <a
-                    href="https://linkedin.com/in/sean-verity"
+                    href="https://www.linkedin.com/in/seanveritas/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -173,7 +176,6 @@ const Info = () => {
                 <li>
                     Accessibility
                     <ul>
-                        <li>Move keyboard focus to modal on open</li>
                         <li>
                             Moving of keyboard focus to the modals when they
                             open
